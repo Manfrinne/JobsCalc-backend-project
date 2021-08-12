@@ -25,6 +25,7 @@ form .input-group {
 }
 
 form .input-group .input-wrapper + .input-wrapper {
+  width: 50%;
   margin-left: 1.5rem;
 }
 
