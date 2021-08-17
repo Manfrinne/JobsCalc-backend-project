@@ -4,12 +4,14 @@
   "description": "Projeto JobsCalc - backend",
   "main": "src/server.js",
   "scripts": {
+    "debug": "nodemon --inspect=0.0.0.0:9229 src/server.js",
     "start": "nodemon ."
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "browsersync": "^0.0.1-security",
     "ejs": "^3.1.6",
     "express": "^4.17.1"
   },
