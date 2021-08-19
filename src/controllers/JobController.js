@@ -24,13 +24,13 @@ module.exports = {
 
   edit(req, res) {
     const jobId = req.params.id;
-    const  jobs = Job.get();
+    const jobs = Job.get();
 
-    const  job = jobs.find(job => Number(job.id) === Number(jobId));
+    const job = jobs.find((job) => Number(job.id) === Number(jobId));
 
-    if(!job) {
-      return res.send('JOB NOT FOUND!');
-    };
+    if (!job) {
+      return res.send("JOB NOT FOUND!");
+    }
 
     const profile = Profile.get();
 
@@ -41,36 +41,35 @@ module.exports = {
 
   update(req, res) {
     const jobId = req.params.id;
-    const  jobs = Job.get();
+    const jobs = Job.get();
 
-    const  job = jobs.find(job => Number(job.id) === Number(jobId));
+    const job = jobs.find((job) => Number(job.id) === Number(jobId));
 
-    if(!job) {
-      return res.send('JOB NOT FOUND!');
-    };
+    if (!job) {
+      return res.send("JOB NOT FOUND!");
+    }
 
     const updatedJob = {
       ...job,
       name: req.body.name,
       "daily-hours": req.body["daily-hours"],
       "total-hours": req.body["total-hours"],
-    }
+    };
 
-    const newJobs = jobs.map(job => {
-      if(Number(job.id) === Number(jobId)) {
+    const newJobs = jobs.map((job) => {
+      if (Number(job.id) === Number(jobId)) {
         job = updatedJob;
-      };
+      }
 
       return job;
-    })
+    });
 
-    Job.update(newJobs)
+    Job.update(newJobs);
 
-    return res.redirect("/job/" + jobId)
+    return res.redirect("/");
   },
 
   delete(req, res) {
-
     const jobId = req.params.id;
 
     Job.delete(jobId);
