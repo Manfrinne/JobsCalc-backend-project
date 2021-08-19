@@ -15,4 +15,4 @@ module.exports = {
   },
 
   calculateJobBudget: (job, valueHour) => valueHour * job["total-hours"],
-}
+};

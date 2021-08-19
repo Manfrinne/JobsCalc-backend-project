@@ -1,6 +1,6 @@
 const Job = require("../model/Job");
 const Profile = require("../model/Profile");
-const JobUtils = require("../utils/jobUtils")
+const JobUtils = require("../utils/jobUtils");
 
 module.exports = {
   index(req, res) {
@@ -16,7 +16,7 @@ module.exports = {
     // Total de horas por dia de cada Job
     let jobTotalHours = 0;
 
-    const updatedJobs = jobs.map(job => {
+    const updatedJobs = jobs.map((job) => {
       // Determinar status do serviço
       const remainingDays = JobUtils.remainingDays(job);
       const status = remainingDays <= 0 ? "done" : "progress";
@@ -25,19 +25,27 @@ module.exports = {
       statusCount[status] += 1;
 
       // Horas diárias de cada Job em aberto
-      jobTotalHours = status == "progress" ? jobTotalHours + Number(job["daily-hours"]) : jobTotalHours;
+      jobTotalHours =
+        status == "progress"
+          ? jobTotalHours + Number(job["daily-hours"])
+          : jobTotalHours;
 
       return {
         ...job,
         remainingDays,
         status,
         budget: JobUtils.calculateJobBudget(job, profile["value-hour"]),
-      }
-    })
+      };
+    });
 
     // Determinar horas livres no dia
-    const freeHours = profile["hours-per-day"] - jobTotalHours
+    const freeHours = profile["hours-per-day"] - jobTotalHours;
 
-    return res.render("index", { jobs: updatedJobs, profile: profile, statusCount: statusCount, freeHours: freeHours });
+    return res.render("index", {
+      jobs: updatedJobs,
+      profile: profile,
+      statusCount: statusCount,
+      freeHours: freeHours,
+    });
   },
 };
