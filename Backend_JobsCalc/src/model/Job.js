@@ -13,8 +13,8 @@ module.exports = {
       name: job.name,
       "daily-hours": job.daily_hours,
       "total-hours": job.total_hours,
-      created_at: job.created_at
-    }))
+      created_at: job.created_at,
+    }));
   },
 
   async update(updatedJob, jobId) {
@@ -31,11 +31,15 @@ module.exports = {
   },
 
   async delete(id) {
-    const db = await Database();
+    try {
+      const db = await Database();
 
-    await db.run(`DELETE FROM jobs WHERE id = ${id}`);
+      await db.run(`DELETE FROM jobs WHERE id = ${id}`);
 
-    await db.close();
+      await db.close();
+    } catch (error) {
+      console.error(error);
+    }
   },
 
   async create(newJob) {
@@ -54,5 +58,5 @@ module.exports = {
     )`);
 
     await db.close();
-  }
+  },
 };
