@@ -1,6 +1,6 @@
 <div align="center">
 
-# JobsCalc - Uma aplicação de estimativa de cálculo para projetos freelancer
+# JobsCalc - Controle de projetos freelancer
 
 > Desenvolvimento back-end de uma aplicação Web - Discover 2 (Rocketseat)
 </div>
